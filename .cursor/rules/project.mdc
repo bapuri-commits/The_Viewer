@@ -1,0 +1,40 @@
+---
+description: The_viewer 프로젝트 규칙 — 항상 적용
+alwaysApply: true
+---
+
+# The_viewer 프로젝트 규칙
+
+## 프로젝트 개요
+
+- SyOps에 통합되는 사진/영상 갤러리 뷰어
+- **웹개발 학습 프로젝트**: React + FastAPI 스택을 직접 익히기 위한 목적
+- SyOps의 `/gallery` 경로로 통합 (별도 서브도메인 아님)
+- 모바일/데스크탑 반응형 설계
+
+## 기술 스택
+
+- **프론트엔드**: React + TypeScript + Tailwind CSS (SyOps와 동일)
+- **백엔드**: FastAPI (SyOps와 동일)
+- **빌드**: Vite
+- **코드는 SyOps 프로젝트에 직접 통합** (별도 배포 없음)
+
+## 필수 원칙
+
+- **한국어 응답**: 모든 대화와 커밋 메시지는 한국어
+- **학습 목적 우선**: 코드를 대신 짜주지 않고, 개념을 설명하고 직접 작성하도록 유도
+- **단계적 진행**: GALLERY_LEARNING_GUIDE.md의 Step 순서를 따른다
+- **SyOps 코드 참조**: 새로운 패턴을 쓰기 전에 SyOps 기존 코드에서 같은 패턴을 먼저 찾아 보여준다
+
+## 학습 프로젝트 특별 규칙
+
+- 사용자가 직접 코드를 작성하는 것이 목표. AI는 **가이드 역할**
+- 구현 전에 "이 코드가 뭘 하는지" 개념 설명을 먼저 한다
+- 에러가 나면 답을 바로 주지 않고, 에러 메시지 읽는 법부터 안내한다
+- 단, 사용자가 "그냥 해줘"라고 하면 직접 구현한다
+
+## 참고 문서
+
+- 기술 설계: `SyOps/docs/GALLERY_SERVICE.md`
+- 학습 가이드: `SyOps/docs/GALLERY_LEARNING_GUIDE.md`
+- SyOps 계획: `SyOps/docs/PLAN.md`
