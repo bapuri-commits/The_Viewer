@@ -7,34 +7,48 @@ alwaysApply: true
 
 ## 프로젝트 개요
 
-- SyOps에 통합되는 사진/영상 갤러리 뷰어
-- **웹개발 학습 프로젝트**: React + FastAPI 스택을 직접 익히기 위한 목적
-- SyOps의 `/gallery` 경로로 통합 (별도 서브도메인 아님)
-- 모바일/데스크탑 반응형 설계
+- SyOps에 통합된 사진/영상 갤러리 뷰어의 **문서/스크립트 저장소**
+- 소스 코드는 전부 SyOps 레포에 위치 (이 레포에는 없음)
+- 서비스 URL: `syworkspace.cloud/gallery` (admin 전용)
+- 미디어 저장소: VPS `/opt/data/the-viewer/`
 
-## 기술 스택
+## 기술 스택 (코드는 SyOps에)
 
-- **프론트엔드**: React + TypeScript + Tailwind CSS (SyOps와 동일)
-- **백엔드**: FastAPI (SyOps와 동일)
-- **빌드**: Vite
-- **코드는 SyOps 프로젝트에 직접 통합** (별도 배포 없음)
+- **프론트엔드**: React + TypeScript + Tailwind CSS (파스텔 핑크 테마)
+- **백엔드**: FastAPI (admin JWT 인증, 썸네일 자동생성, Range 스트리밍)
+- **빌드/배포**: Vite + GitHub Actions CI/CD (SyOps 파이프라인)
+
+## SyOps 내 Gallery 파일 위치
+
+```
+SyOps/backend/
+├── core/config.py              (gallery_media_dir 설정)
+├── routers/gallery.py          (API: 목록/파일서빙/썸네일)
+└── services/gallery.py         (Pillow 썸네일 + ffmpeg 영상 썸네일)
+
+SyOps/frontend/src/
+├── pages/Gallery.tsx            (메인 페이지)
+├── components/gallery/
+│   ├── AlbumCard.tsx            (폴더 카드)
+│   ├── Breadcrumb.tsx           (경로 탐색)
+│   ├── Lightbox.tsx             (전체화면 뷰어 + 스와이프)
+│   ├── MediaGrid.tsx            (썸네일 격자)
+│   └── VideoPlayer.tsx          (영상 자동재생)
+└── index.css                    (gallery-* 테마 변수)
+```
+
+## 이 레포의 역할
+
+- Gallery 관련 문서 보관
+- 사진 전송 스크립트 등 운영 도구 보관
+- SyOps에 넣기 애매한 Gallery 전용 자료
 
 ## 필수 원칙
 
 - **한국어 응답**: 모든 대화와 커밋 메시지는 한국어
-- **학습 목적 우선**: 코드를 대신 짜주지 않고, 개념을 설명하고 직접 작성하도록 유도
-- **단계적 진행**: GALLERY_LEARNING_GUIDE.md의 Step 순서를 따른다
-- **SyOps 코드 참조**: 새로운 패턴을 쓰기 전에 SyOps 기존 코드에서 같은 패턴을 먼저 찾아 보여준다
-
-## 학습 프로젝트 특별 규칙
-
-- 사용자가 직접 코드를 작성하는 것이 목표. AI는 **가이드 역할**
-- 구현 전에 "이 코드가 뭘 하는지" 개념 설명을 먼저 한다
-- 에러가 나면 답을 바로 주지 않고, 에러 메시지 읽는 법부터 안내한다
-- 단, 사용자가 "그냥 해줘"라고 하면 직접 구현한다
+- **코드 수정은 SyOps에서**: Gallery 기능 변경은 SyOps 레포에서 진행
 
 ## 참고 문서
 
 - 기술 설계: `SyOps/docs/GALLERY_SERVICE.md`
-- 학습 가이드: `SyOps/docs/GALLERY_LEARNING_GUIDE.md`
-- SyOps 계획: `SyOps/docs/PLAN.md`
+- 학습 가이드 (아카이브): `SyOps/docs/GALLERY_LEARNING_GUIDE.md`
